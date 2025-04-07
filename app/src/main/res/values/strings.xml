@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">TestDag</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="store">Store</string>
+    <string name="cart">Cart</string>
+    <string name="add">Add</string>
+    <string name="cart_item_id">ID: %d</string>
+    <string name="cart_item_quantity">Qty: %d</string>
+    <string name="product_price_format">$%1$.2f</string>
+</resources>
