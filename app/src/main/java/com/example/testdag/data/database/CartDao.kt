@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface CartDao {
 
-    @Query("SELECT * FROM cart_item")
+    @Query("SELECT cart_item.id, cart_item.productId, cart_item.quantity, product.name AS name FROM cart_item JOIN product ON cart_item.productId = product.id")
     fun getAllCartItems(): Flow<List<CartItem>>
 
     @Insert

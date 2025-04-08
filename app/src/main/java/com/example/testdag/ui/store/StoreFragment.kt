@@ -9,24 +9,16 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.testdag.data.model.Product
 import com.example.testdag.databinding.FragmentStoreBinding
-import com.example.testdag.di.MainApplication
 import com.example.testdag.ui.adapter.ProductAdapter
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class StoreFragment : Fragment() {
+class StoreFragment @Inject constructor(
+    internal val viewModel: StoreViewModel?
+) : Fragment() {
 
     private var binding: FragmentStoreBinding? = null
-
-    @Inject
-    var viewModel: StoreViewModel? = null
-
     private val productAdapter = ProductAdapter { product -> onAddToCart(product) }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        (requireActivity().application as MainApplication).appComponent.inject(this)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,7 +32,6 @@ class StoreFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-        viewModel?.addInitialProducts()
         observeProducts()
     }
 

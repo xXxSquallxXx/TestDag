@@ -8,24 +8,16 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.testdag.databinding.FragmentCartBinding
-import com.example.testdag.di.MainApplication
 import com.example.testdag.ui.adapter.CartAdapter
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class CartFragment : Fragment() {
+class CartFragment @Inject constructor(
+    private val viewModel: CartViewModel?
+) : Fragment() {
 
     private var binding: FragmentCartBinding? = null
-
-    @Inject
-    var viewModel: CartViewModel? = null
-
     private val cartAdapter = CartAdapter()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        (requireActivity().application as MainApplication).appComponent.inject(this)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,12 +32,19 @@ class CartFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         observeCartItems()
+        setupClearCartButton()
     }
 
     private fun setupRecyclerView() {
         binding?.cartList?.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = cartAdapter
+        }
+    }
+
+    private fun setupClearCartButton() {
+        binding?.clearCartButton?.setOnClickListener {
+            viewModel?.clearCart()
         }
     }
 

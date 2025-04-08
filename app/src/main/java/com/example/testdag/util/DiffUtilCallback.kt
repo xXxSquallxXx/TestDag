@@ -5,17 +5,21 @@ import androidx.recyclerview.widget.DiffUtil
 import com.example.testdag.data.model.CartItem
 import com.example.testdag.data.model.Product
 
-class DiffUtilCallback : DiffUtil.ItemCallback<Any>() {
-    override fun areItemsTheSame(oldItem: Any, newItem: Any): Boolean {
-        return when {
-            oldItem is Product && newItem is Product -> oldItem.id == newItem.id
-            oldItem is CartItem && newItem is CartItem -> oldItem.id == newItem.id
-            else -> false
-        }
-    }
-
+abstract class DiffUtilCallback<T : Any> : DiffUtil.ItemCallback<T>() {
     @SuppressLint("DiffUtilEquals")
-    override fun areContentsTheSame(oldItem: Any, newItem: Any): Boolean {
+    override fun areContentsTheSame(oldItem: T, newItem: T): Boolean {
         return oldItem == newItem
+    }
+}
+
+object CartDiffUtilCallback : DiffUtilCallback<CartItem>() {
+    override fun areItemsTheSame(oldItem: CartItem, newItem: CartItem): Boolean {
+        return oldItem.id == newItem.id
+    }
+}
+
+object ProductDiffUtilCallback : DiffUtilCallback<Product>() {
+    override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
+        return oldItem.id == newItem.id
     }
 }

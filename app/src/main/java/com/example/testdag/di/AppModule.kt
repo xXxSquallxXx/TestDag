@@ -6,14 +6,12 @@ import dagger.Provides
 import com.example.testdag.data.database.AppDatabase
 import com.example.testdag.data.repository.CartRepository
 import com.example.testdag.data.repository.ProductRepository
-import com.example.testdag.ui.cart.CartViewModel
-import com.example.testdag.ui.store.StoreViewModel
 
 @Module
-object AppModule {
+class AppModule(private val application: MainApplication) {
 
     @Provides
-    fun provideContext(application: MainApplication): Context {
+    fun provideContext(): Context {
         return application.applicationContext
     }
 
@@ -30,15 +28,5 @@ object AppModule {
     @Provides
     fun provideCartRepository(database: AppDatabase): CartRepository {
         return CartRepository(database.cartDao())
-    }
-
-    @Provides
-    fun provideStoreViewModel(productRepository: ProductRepository, cartRepository: CartRepository): StoreViewModel {
-        return StoreViewModel(productRepository, cartRepository)
-    }
-
-    @Provides
-    fun provideCartViewModel(cartRepository: CartRepository): CartViewModel {
-        return CartViewModel(cartRepository)
     }
 }

@@ -1,17 +1,30 @@
 package com.example.testdag.ui.main
 
 import android.os.Bundle
-import androidx.fragment.app.FragmentActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 import com.example.testdag.databinding.ActivityMainBinding
+import com.example.testdag.di.MainApplication
 import com.example.testdag.util.UiInitializer
 
-class MainActivity : FragmentActivity() {
+class MainActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    private val viewModel by lazy { MainViewModel(application as MainApplication) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        UiInitializer.initUi(this, binding)
+
+        val appComponent = (application as MainApplication).appComponent
+        UiInitializer.initUi(this, binding, appComponent)
+
+        viewModel.initProducts()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        val prefs = getSharedPreferences("TestDagPrefs", MODE_PRIVATE)
+        prefs.edit { putBoolean("isFirstRun", true) }
     }
 }

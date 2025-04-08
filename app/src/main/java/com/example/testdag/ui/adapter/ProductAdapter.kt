@@ -7,9 +7,10 @@ import androidx.recyclerview.widget.ListAdapter
 import com.example.testdag.data.model.Product
 import com.example.testdag.databinding.ItemProductBinding
 import com.example.testdag.R
+import com.example.testdag.util.ProductDiffUtilCallback
 
 class ProductAdapter(private val onAddToCart: (Product) -> Unit) :
-    ListAdapter<Product, ProductAdapter.ProductViewHolder>(DiffUtilCallback) {
+    ListAdapter<Product, ProductAdapter.ProductViewHolder>(ProductDiffUtilCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val binding = ItemProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
