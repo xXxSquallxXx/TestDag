@@ -19,7 +19,7 @@
         android:id="@+id/product_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingEnd="4dp"
+        android:paddingEnd="8dp"
         app:layout_constraintEnd_toStartOf="@id/add_to_cart_button"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

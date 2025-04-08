@@ -2,7 +2,6 @@ package com.example.testdag.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.edit
 import com.example.testdag.databinding.ActivityMainBinding
 import com.example.testdag.di.MainApplication
 import com.example.testdag.util.UiInitializer
@@ -24,7 +23,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        val prefs = getSharedPreferences("TestDagPrefs", MODE_PRIVATE)
-        prefs.edit { putBoolean("isFirstRun", true) }
+        viewModel.resetFirstRun()
     }
 }

@@ -1,11 +1,13 @@
 package com.example.testdag.ui.main
 
+import android.app.Application
 import androidx.lifecycle.ViewModel
 import com.example.testdag.data.database.AppDatabase
 import com.example.testdag.data.repository.CartRepository
 import com.example.testdag.data.repository.ProductRepository
 import com.example.testdag.di.MainApplication
 import com.example.testdag.ui.store.StoreViewModel
+import androidx.core.content.edit
 
 class MainViewModel(private val application: MainApplication) : ViewModel() {
 
@@ -18,5 +20,10 @@ class MainViewModel(private val application: MainApplication) : ViewModel() {
 
     fun initProducts() {
         storeViewModel.addInitialProducts(application)
+    }
+
+    fun resetFirstRun() {
+        val prefs = application.getSharedPreferences("TestDagPrefs", Application.MODE_PRIVATE)
+        prefs.edit { putBoolean("isFirstRun", true) }
     }
 }
