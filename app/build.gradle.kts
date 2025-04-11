@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.testdag"
+    namespace = "com.example.quickbiteapp"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.testdag"
+        applicationId = "com.example.quickbiteapp"
         minSdk = 26
         targetSdk = 35
         versionCode = 1
@@ -58,4 +58,8 @@ dependencies {
     ksp (libs.dagger.compiler)
     implementation (libs.androidx.recyclerview)
     implementation (libs.androidx.fragment.ktx)
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
+    implementation (libs.gson)
+    implementation (libs.coil)
 }

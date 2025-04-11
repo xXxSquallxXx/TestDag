@@ -8,4 +8,9 @@
     <string name="cart_item_quantity">Количество: %d</string>
     <string name="product_price_format">$%1$.2f</string>
     <string name="clear_cart">Clear Cart</string>
+    <string name="restaurant_image_description">Restaurant image</string>
+    <string name="star_icon_description">Rating star</string>
+    <string name="menu_item_image_description">Menu item image</string>
+    <string name="unknown_item">Unknown Item</string>
+    <string name="error_loading_item">Error Loading Item</string>
 </resources>
