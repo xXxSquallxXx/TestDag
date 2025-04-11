@@ -1,7 +1,6 @@
 package com.example.quickbiteapp.ui.menu
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,7 +54,6 @@ class MenuItemFragment @Inject constructor(
                 lifecycleScope.launch {
                     val uniqueProductId = restaurantId * 100 + item.id // Уникальный productId
                     cartRepository.insert(CartItem(restaurantId = restaurantId, productId = uniqueProductId, quantity = 1, name = item.name))
-                    Log.d("Test", "Товар добавлен в корзину: ${item.name}, ID: $uniqueProductId, Количество: 1")
                 }
             }
         }

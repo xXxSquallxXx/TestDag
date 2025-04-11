@@ -9,8 +9,4 @@ class ProductRepository(private val productDao: ProductDao) {
     fun getAllProducts(): Flow<List<Product>> {
         return productDao.getAllProducts()
     }
-
-    suspend fun insert(product: Product) {
-        productDao.insert(product)
-    }
 }
